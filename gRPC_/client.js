@@ -3,7 +3,7 @@ var grpc = require('grpc');
 var booksProto = grpc.load('books.proto');
 
 var client = new booksProto.books.BookService('127.0.0.1:50051', 
-  grpc.Credentials.createInsecure());
+  grpc.credentials.createInsecure());
 
 function printResponse(error, response) {
   if (error)
@@ -38,10 +38,10 @@ function deleteBook(id) {
 }
 // add the following section
 function watchBooks() {
-  var call = client.watch({});
-  call.on('data', function(book) {
-    console.log(book);
-  });
+    var call = client.watch({});
+    call.on('data', function(book) {
+        console.log(book);
+    });
 }
 // add the following section
 var processName = process.argv.shift();
