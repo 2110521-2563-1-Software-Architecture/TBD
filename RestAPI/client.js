@@ -70,5 +70,5 @@ else if (command == 'get')
   getBook(process.argv[0]);
 else if (command == 'delete')
   deleteBook(process.argv[0]);
-  else if (command == 'watch')
+else if (command == 'watch')
   watchBook();
