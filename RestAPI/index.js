@@ -16,9 +16,11 @@ app.get('/books', (req,res) => {
 })
 
 app.get('/books/:id', (req,res) => {
-    if(books.find(book => book.id === req.params.id)){
-        res.json(book)
-        return
+    for (let book of books) {
+        if (book.id === parseInt(req.params.id)) {
+            res.json(book);
+            return;
+        }
     }
     res.send('Book not found')
 });
@@ -32,9 +34,9 @@ app.post('/books', (req,res) => {
 });
 
 app.delete('/books/:id', (req,res) => {
-    var i = books.findIndex(book => book.id === req.params.id)
-    books.splice(i,1)
-    res.send('Delete book')
+    const deletedIndex = books.findIndex(book => book.id === req.params.id)
+   books.splice(deletedIndex, 1)
+   res.status(204).send()
 })
 
 app.get('/streaming', (req,res) => {

@@ -5,17 +5,21 @@ function watchBook(){
     
 }
 
-function getBook(){
-    
+function getBook(bookID){
+    request.get('http://localhost:3000/books/' + String(bookID), (err, res, body) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log(JSON.parse(body));
+    });
 }
 
 function listBook(){
     const options = {
         url: 'http://localhost:3000/books',
-        method: 'GET',
         secure:false
     };
-    request(options, (err, res, body) => {
+    request.get(options, (err, res, body) => {
         if (err) {
             return console.log(err);
         }
@@ -41,8 +45,13 @@ function insertBook(bookID,bookTitle,bookAuthor){
     });
 }
 
-function deleteBook(){
-    
+function deleteBook(bookID){
+    request.delete('http://localhost:3000/books/' + String(bookID), (err, res, body) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log('Status Code:', res.statusCode);
+    });
 }
 
 var processName = process.argv.shift();
