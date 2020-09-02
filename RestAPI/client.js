@@ -49,6 +49,15 @@ function deleteBook(bookID){
     });
 }
 
+function watchBook(){
+    request.get('http://localhost:3000/streaming', (err, res, body) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log(JSON.parse(body));
+    });
+}
+
 var processName = process.argv.shift();
 var scriptName = process.argv.shift();
 var command = process.argv.shift();
@@ -61,3 +70,5 @@ else if (command == 'get')
   getBook(process.argv[0]);
 else if (command == 'delete')
   deleteBook(process.argv[0]);
+  else if (command == 'watch')
+  watchBook();
