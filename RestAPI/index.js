@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
+const http = require("http");
+const server = http.createServer(app); 
 const events = require('events');
 
 const bookStream = new events.EventEmitter();
-let books = [];
+let books = [{id:1, title:'team'}];
 
 
 app.get('/books', (req,res) => {
-    res.json(books)
+    res.send(books)
 })
 
 app.get('/books/:id', (req,res) => {
@@ -38,6 +40,6 @@ app.get('/streaming', (req,res) => {
     })
 })
 
-app.listen(3000, ()=>{
+server.listen(3000, ()=>{
     console.log('Connect to port 3000.')
 });
