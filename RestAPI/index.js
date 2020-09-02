@@ -3,10 +3,13 @@ const app = express();
 const http = require("http");
 const server = http.createServer(app); 
 const events = require('events');
+const bodyParser = require('body-parser')
 
 const bookStream = new events.EventEmitter();
-let books = [{id:1, title:'team'}];
+let books = [{id:1, title:'team', author:'team'}];
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/books', (req,res) => {
     res.send(books)

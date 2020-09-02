@@ -23,8 +23,22 @@ function listBook(){
     });
 }
 
-function insertBook(){
-    
+function insertBook(bookID,bookTitle,bookAuthor){
+    const options = {
+        url: 'http://localhost:3000/books',
+        json: true,
+        body:{
+            id:parseInt(bookID),
+            title:bookTitle,
+            author:bookAuthor
+        }
+    };
+    request.post(options, (err, res, body) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log(body);
+    });
 }
 
 function deleteBook(){
