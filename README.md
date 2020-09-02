@@ -5,7 +5,6 @@
 | Functions | gPRC | REST API | 
 | :---: | :---: | :---: |
 | Listbook | 301 | 283 | 
-| :---: | :---: | :---: |
 | Insert books | abe | sfd |
 
 4. What are the main differences between REST API and gRPC?
