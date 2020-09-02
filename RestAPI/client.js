@@ -1,10 +1,5 @@
 const request = require('request')
 
-
-function watchBook(){
-    console.log("Clients already insert book!!");
-}
-
 function getBook(bookID){
     request.get('http://localhost:3000/books/' + String(bookID), (err, res, body) => {
         if (err) {
@@ -66,5 +61,3 @@ else if (command == 'get')
   getBook(process.argv[0]);
 else if (command == 'delete')
   deleteBook(process.argv[0]);
-else if (command == 'watch')
-  watchBook();
