@@ -14,7 +14,11 @@ Table format as shown below.
 
 | Functions | gPRC | REST API | 
 | :---: | :---: | :---: |
-| Listbook | 301 | 283 | 
+| List books | node client.js list | 283 | 
+| Insert book | node client.js insert 'id' 'title' 'author' | 283 | 
+| Get book | node client.js get 'id' | 283 |
+| Delete book | node client.js delete 'id' | 283 |
+| Watch | node client.js watch | 283 | 
 | Insert books | abe | sfd |
 
 7. Draw a component diagram representing the book services with and without interfaces.
