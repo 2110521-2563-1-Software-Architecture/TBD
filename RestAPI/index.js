@@ -29,7 +29,6 @@ app.post('/books', (req,res) => {
     book = req.body
     books.push(book)
     bookStream.emit('new_book',book)
-    console.log(book)
     res.send('New book is added')
 });
 
@@ -42,7 +41,7 @@ app.delete('/books/:id', (req,res) => {
 
 app.get('/streaming', (req,res) => {
     bookStream.on('new_book',function(book){
-        res.write(book)
+        res.write(JSON.stringify(book) + '\n')
     })
 })
 
