@@ -34,9 +34,10 @@ app.post('/books', (req,res) => {
 });
 
 app.delete('/books/:id', (req,res) => {
-    const deletedIndex = books.findIndex(book => book.id === req.params.id)
-   books.splice(deletedIndex, 1)
-   res.status(204).send()
+    const deletedIndex = books.findIndex(book => book.id === parseInt(req.params.id))
+    console.log(deletedIndex)
+    books.splice(deletedIndex, 1)
+    res.status(204).send()
 })
 
 app.get('/streaming', (req,res) => {
