@@ -2,7 +2,7 @@ const request = require('request')
 
 
 function watchBook(){
-    
+    console.log("Clients already insert book!");
 }
 
 function getBook(bookID){
