@@ -1,10 +1,10 @@
 # Members
-  6030053921  Keerati Chuatanapinyo
-  6030559121  Siwat Pongpanit
-  6030631621  Anawat Trongwattananon
-  6031022621  Thanapun Yan-amporn
-  6031055321  Weerayut Thinchamlong
-  6031059921  Setthanan Nakaphan
+1.  6030053921  Keerati Chuatanapinyo
+2.  6030559121  Siwat Pongpanit
+3.  6030631621  Anawat Trongwattananon
+4.  6031022621  Thanapun Yan-amporn
+5.  6031055321  Weerayut Thinchamlong
+6.  6031059921  Setthanan Nakaphan
 
 # Screenshots of Swagger for your APIs
 ![alt text](https://raw.githubusercontent.com/2110521-2563-1-Software-Architecture/TBD-Assignment-1/master/swagger_api_doc.png "Swagger API Documentation")
