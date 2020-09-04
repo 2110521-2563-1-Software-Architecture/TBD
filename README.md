@@ -1,10 +1,10 @@
 # Members
-1.  6030053921  Keerati Chuatanapinyo
-2.  6030559121  Siwat Pongpanit
-3.  6030631621  Anawat Trongwattananon
-4.  6031022621  Thanapun Yan-amporn
-5.  6031055321  Weerayut Thinchamlong
-6.  6031059921  Setthanan Nakaphan
+  6030053921  Keerati Chuatanapinyo
+  6030559121  Siwat Pongpanit
+  6030631621  Anawat Trongwattananon
+  6031022621  Thanapun Yan-amporn
+  6031055321  Weerayut Thinchamlong
+  6031059921  Setthanan Nakaphan
 
 # Screenshots of Swagger for your APIs
 ![alt text](https://raw.githubusercontent.com/2110521-2563-1-Software-Architecture/TBD-Assignment-1/master/swagger_api_doc.png "Swagger API Documentation")
@@ -224,27 +224,27 @@ else if (command == "delete") deleteBook(process.argv[0]);
 
 ```
 
-# Compare how to call the methods based on gRPC and REST API side-by-side, e.g. in a Table format as shown below. 
+# Compare how to call the methods based on gRPC and REST API side-by-side. 
 
 | Functions | gPRC | REST API | 
 | :---: | :---: | :---: |
-| List books | node client.js list | 283 | 
-| Insert book | node client.js insert 'id' 'title' 'author' | 283 | 
-| Get book | node client.js get 'id' | 283 |
-| Delete book | node client.js delete 'id' | 283 |
-| Watch | node client.js watch | - | 
+| List books | `client.list({}, function(error, books) {...}` | `request.get({url: "http://localhost:3000/books"}, (err, res, body) => {...})` | 
+| Insert book | `client.insert({id, title, author}, function(error, empty) {...}` | `request.get({url: "http://localhost:3000/books/insert", json: true, body: {id, title, author}}, (err, res, body) => {...})` | 
+| Get book | `client.get({ id: parseInt(id) }, function(error, book) {...}` | `request.get("http://localhost:3000/books/" + String(bookID),(err, res, body) => {...})` |
+| Delete book | `client.delete({ id: parseInt(id) }, function(error, book) {...}` | `request.delete("http://localhost:3000/books/delete/" + String(bookID),(err, res, body) => {...})` |
+| Watch | `client.watch({})` | - | 
 
 # What are the main differences between REST API and gRPC?
 # What is the benefits of introduceinterface in front of the gRPC and REST API of the book services. 
-# Based on the introduced interface, compare how to call the methods based on gRPC and REST API side-by-side, e.g. in a Table format as shown below. 
+# Based on the introduced interface, compare how to call the methods based on gRPC and REST API side-by-side. 
 
 | Functions | gPRC | REST API | 
 | :---: | :---: | :---: |
-| List books | node client.js list | 283 | 
-| Insert book | node client.js insert 'id' 'title' 'author' | 283 | 
-| Get book | node client.js get 'id' | 283 |
-| Delete book | node client.js delete 'id' | 283 |
-| Watch | node client.js watch | 283 | 
+| List books | node client.js list | node client.js list | node client.js list | node client.js list
+| Insert book | node client.js insert `id` `title` `author` | node client.js insert `id` `title` `author` | 
+| Get book | node client.js get `id` | node client.js get `id` |
+| Delete book | node client.js delete `id` | node client.js delete `id` |
+| Watch | node client.js watch | - | 
 
 # Component diagram representing the book services with and without interfaces.
 
