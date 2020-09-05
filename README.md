@@ -1,4 +1,4 @@
-# Members
+## Members
 1.  6030053921  Keerati Chuatanapinyo
 2.  6030559121  Siwat Pongpanit
 3.  6030631621  Anawat Trongwattananon
@@ -6,11 +6,14 @@
 5.  6031055321  Weerayut Thinchamlong
 6.  6031059921  Setthanan Nakaphan
 
-# Screenshots of Swagger for your APIs
+
+## 1. Screenshots of Swagger for your APIs
 ![alt text](https://raw.githubusercontent.com/2110521-2563-1-Software-Architecture/TBD-Assignment-1/master/swagger_api_doc.png "Swagger API Documentation")
 
-# Source codes of REST API's server and client
-## Server
+
+## 2. Source codes of REST API's server and client
+
+### Server
 ```javascript
 const express = require("express");
 const app = express();
@@ -153,7 +156,7 @@ server.listen(3000, () => {
 
 ```
 
-## Client
+### Client
 ```javascript
 const request = require("request");
 
@@ -224,7 +227,8 @@ else if (command == "delete") deleteBook(process.argv[0]);
 
 ```
 
-# Compare how to call the methods based on gRPC and REST API side-by-side. 
+
+## 3.Compare how to call the methods based on gRPC and REST API side-by-side. 
 
 | Functions | gPRC | REST API | 
 | :---: | :---: | :---: |
@@ -234,9 +238,16 @@ else if (command == "delete") deleteBook(process.argv[0]);
 | Delete book | `client.delete({ id: parseInt(id) }, function(error, book) {...}` | `request.delete("http://localhost:3000/books/delete/" + String(bookID),(err, res, body) => {...})` |
 | Watch | `client.watch({})` | - | 
 
-# What are the main differences between REST API and gRPC?
-# What is the benefits of introduceinterface in front of the gRPC and REST API of the book services. 
-# Based on the introduced interface, compare how to call the methods based on gRPC and REST API side-by-side. 
+
+## 4. What are the main differences between REST API and gRPC?
+  First, obviously, both of them requires different payload format, JSON for REST API and PROCTOBUF for gRPC. Unlike JSON, PROCTOBUF has type and uniqe number. Second, since gRPC uses the newer HTTP/2 protocol and supports both synchronous and asynchronous processing, it is faster than REST whcih uses HTTP/1.1 protocal. Finally, REST API dominating a communication between client and server in a web development makes browers support it more than gRPC.
+
+
+## 5. What is the benefits of introducing interface in front of the gRPC and REST API of the book services. 
+  We can simply change the way functions work but it does not affect the client at all.
+
+
+## 6. Based on the introduced interface, compare how to call the methods based on gRPC and REST API side-by-side. 
 
 | Functions | gPRC | REST API | 
 | :---: | :---: | :---: |
@@ -246,5 +257,6 @@ else if (command == "delete") deleteBook(process.argv[0]);
 | Delete book | node client.js delete `id` | node client.js delete `id` |
 | Watch | node client.js watch | - | 
 
-# Component diagram representing the book services with and without interfaces.
 
+## 7. Component diagram representing the book services with and without interfaces.
+![alt text](https://raw.githubusercontent.com/2110521-2563-1-Software-Architecture/TBD-Assignment-1/master/REST%20API%20Component%20Diagram.jpeg "REST API Component Diagram")
