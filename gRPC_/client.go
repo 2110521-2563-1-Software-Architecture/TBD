@@ -1,14 +1,3 @@
-//   Copyright 2016, Google, Inc.
-//   Licensed under the Apache License, Version 2.0 (the "License");
-//   you may not use this file except in compliance with the License.
-//   You may obtain a copy of the License at
-//       http://www.apache.org/licenses/LICENSE-2.0
-//   Unless required by applicable law or agreed to in writing, software
-//   distributed under the License is distributed on an "AS IS" BASIS,
-//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//   See the License for the specific language governing permissions and
-//   limitations under the License.
-
 package main
 
 import (
@@ -54,7 +43,6 @@ func main() {
 
 func usage() {
 	fmt.Println(`client.go is a command-line client for this codelab's gRPC service
-
 Usage:
   client.go list                            List all books
   client.go insert <id> <title> <author>    Insert a book
@@ -84,7 +72,7 @@ var commands = map[string]struct {
 		name:  "insert",
 		desc:  "Inserts the provided book",
 		do:    doInsert,
-		usage: "client.go insert <id> <title> <author>",
+		usage: "client.go insert <id> <title> <author> <num>",
 	},
 	"delete": {
 		name:  "delete",
@@ -156,12 +144,15 @@ func doDelete(ctx context.Context, args ...string) {
 // It parses the provided arguments, calls the service, and prints the
 // response. If any errors are encountered, it dies.
 func doList(ctx context.Context, args ...string) {
+	startTime := time.Now()
 	conn, client := GetClient()
 	defer conn.Close()
 	rs, err := client.List(ctx, &pb.Empty{})
 	if err != nil {
 		log.Fatalf("List books: %v", err)
 	}
+	endTime := time.Now()
+	fmt.Printf("list responces time: %v milli sec \n",int32(endTime.Sub(startTime).Milliseconds()))
 	fmt.Printf("Server sent %v book(s).\n", len(rs.GetBooks()))
 	printRespAsJson(rs)
 }
@@ -170,26 +161,33 @@ func doList(ctx context.Context, args ...string) {
 // It parses the provided arguments, calls the service, and prints the
 // response. If any errors are encountered, it dies.
 func doInsert(ctx context.Context, args ...string) {
-	if len(args) != 3 {
-		log.Fatalf("usage client.go insert <id> <title> <author>")
-	}
+	startTime := time.Now()
+	// if len(args) != 3 {
+	// 	log.Fatalf("usage client.go insert <id> <title> <author>")
+	// }
 	id, err := strconv.ParseInt(args[0], 10, 64)
-	if err != nil {
+	num, err2 := strconv.Atoi(args[3]);
+	if err != nil && err2 != nil  {
 		log.Fatalf("Provided ID %v invalid: %v", args[0], err)
 	}
-	book := &pb.Book{
-		Id:     int32(id),
-		Title:  args[1],
-		Author: args[2],
+	for i := 0; i < num; i++ {
+		book := &pb.Book{
+			Id:     int32(id),
+			Title:  args[1],
+			Author: args[2],
+		}
+		id += 1
+		conn, client := GetClient()
+		defer conn.Close()
+		r, err := client.Insert(ctx, book)
+		if err != nil {
+			log.Fatalf("Insert book (%v): %v", book, err)
+		}	
+		fmt.Println("Server response:")
+		printRespAsJson(r)
 	}
-	conn, client := GetClient()
-	defer conn.Close()
-	r, err := client.Insert(ctx, book)
-	if err != nil {
-		log.Fatalf("Insert book (%v): %v", book, err)
-	}
-	fmt.Println("Server response:")
-	printRespAsJson(r)
+	endTime := time.Now()
+	fmt.Printf("insert responces time: %v milli sec \n",int32(endTime.Sub(startTime).Milliseconds()))
 }
 
 // doWatch is a basic wrapper around the corresponding book service's RPC.
